@@ -47,6 +47,8 @@ public class PayrollDemo
       System.out.println("Hourly pay rate: " + worker.getPayRate());
       System.out.println("Hours worked: " + worker.getHoursWorked());
       System.out.println("Gross pay: $" + worker.getGrossPay());
+      keyboard.close();
    }
+   
 }
 

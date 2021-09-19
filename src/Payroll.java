@@ -17,9 +17,9 @@ public class Payroll
       @param i The employee's ID number.
    */
 
-   public Payroll(String n, int i)
+   public Payroll(String n, int i) throws InvalidNameException
    {
-      name = n;
+      setName(n);
       idNumber = i;
    }
 
@@ -28,9 +28,12 @@ public class Payroll
       @param n The employee's name.
    */
 
-   public void setName(String n)
+   public void setName(String n) throws InvalidNameException
    {
-      name = n;
+      if(isValidEmpName(n))
+         name = n;
+      else 
+         throw new InvalidNameException();
    }
 
    /**
@@ -113,5 +116,15 @@ public class Payroll
    public double getGrossPay()
    {
       return hoursWorked * payRate;
+   }
+
+private boolean isValidEmpName(String e)
+   {
+      boolean status = true;
+      
+      if (e.isBlank() )
+         status = false;
+      
+      return status;
    }
 }

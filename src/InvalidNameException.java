@@ -2,7 +2,7 @@ public class InvalidNameException extends Exception{
 
 
     public InvalidNameException() {
-        super("Error: Invalid emptied string");
+        super("Error: Invalid Name string");
     }
 
     

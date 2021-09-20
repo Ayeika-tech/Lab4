@@ -17,10 +17,13 @@ public class Payroll
       @param i The employee's ID number.
    */
 
-   public Payroll(String n, int i) throws InvalidNameException
+   public Payroll(String n, int i, double p, double h) throws InvalidNameException, InvalidIDException, InvalidHourlyRateException, InvalidHoursException
+                                                               
    {
       setName(n);
-      idNumber = i;
+      setIdNumber(i);
+      setPayRate(p);
+      setHoursWorked(h);
    }
 
    /**
@@ -41,19 +44,25 @@ public class Payroll
       @param i The employee's ID number.
    */
    
-   public void setIdNumber(int i)
-   {
-      idNumber = i;
-   }
+  public void setIdNumber(int i) throws InvalidIDException
+  {
+     if (isValidIdNum(i))
+        idNumber = i;
+     else
+        throw new InvalidIDException();
+  }
 
    /**
       The setPayRate sets the employee's pay rate.
       @param p The employee's pay rate.
    */
    
-   public void setPayRate(double p)
+   public void setPayRate(double p) throws InvalidHourlyRateException
    {
-      payRate = p;
+      if (isValidHourlyRate(p))
+            payRate = p;
+      else
+         throw new InvalidHourlyRateException();      
    }
 
    /**
@@ -61,9 +70,13 @@ public class Payroll
       @param h The number of hours worked.
    */
 
-   public void setHoursWorked(double h)
+   public void setHoursWorked(double h) throws InvalidHoursException
+
    {
-      hoursWorked = h;
+      if (isValidHours(h))
+         hoursWorked = h;
+      else
+         throw new InvalidHoursException();
    }
 
    /**
@@ -118,13 +131,45 @@ public class Payroll
       return hoursWorked * payRate;
    }
 
-private boolean isValidEmpName(String e)
+private boolean isValidEmpName(String n)
    {
       boolean status = true;
       
-      if (e.isBlank() )
+      if (n.isBlank() )
          status = false;
       
       return status;
    }
+
+   private boolean isValidIdNum(int i)
+   {
+      boolean status = true;
+      
+      if (i <= 0 )
+         status = false;
+      
+      return status;
+   }
+
+   private boolean isValidHours (double h)
+   {
+      boolean status = true;
+      
+      if (h < 0 || h > 84 )
+         status = false;
+      
+      return status;
+   }
+   private boolean isValidHourlyRate (double r)
+   {
+      boolean status = true;
+      
+      if (r < 0 || r > 25 )
+         status = false;
+      
+      return status;
+   }
+
+
+
 }

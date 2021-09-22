@@ -36,7 +36,7 @@ public class Payroll
       if(isValidEmpName(n))
          name = n;
       else 
-         throw new InvalidNameException();
+      throw new InvalidNameException();
    }
 
    /**

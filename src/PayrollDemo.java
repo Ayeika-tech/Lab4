@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class PayrollDemo 
 {
-   public static void main(String[] args)
+   public static void main(String[] args) throws InvalidNameException, InvalidIDException, InvalidHourlyRateException, InvalidHoursException
    {
       // Variables for input
       String name;         // An employee's name
@@ -37,54 +37,41 @@ public class PayrollDemo
 
       newEmployee(name, id, payRate, hoursWorked);
       
-       
-      
       keyboard.close();
-
 
    }
 
-   
       // Create a Payroll object and store the data in it.
-   public static void newEmployee(String n, int iD, double payRate, double hrWorked) throws InvalidNameException, InvalidIDException, InvalidHourlyRateException, InvalidHoursException
+   public  static void newEmployee(String n, int iD, double payRate, double hrWorked) throws InvalidNameException, InvalidIDException, InvalidHourlyRateException, InvalidHoursException
    {
-     Payroll worker= new Payroll(n, iD, payRate, hrWorked);
-   
-   
-      try 
-      {    
-
+     
+      try
+      {         Payroll worker= new Payroll(n, iD, payRate, hrWorked);
+              
          // test if we make it to this point
          System.out.println("Payroll Object created. ");
-         System.out.println(worker);
-        
+            // Display the employee's payroll data.
+         System.out.println("\nEmployee Payroll Data");
+         System.out.println("Name: " + worker.getName());
+         System.out.println("ID Number: " + worker.getIdNumber());
+         System.out.println("Hourly pay rate: " + worker.getPayRate());
+         System.out.println("Hours worked: " + worker.getHoursWorked());
+         System.out.println("Gross pay: $" + worker.getGrossPay());
       }
 
         catch (InvalidNameException e) {
-         System.out.println(e.getMessage());
          e.printStackTrace();
       } catch (InvalidIDException e) {
-         System.out.println(e.getMessage());
          e.printStackTrace();
 
       } catch (InvalidHourlyRateException e) {
-         System.out.println(e.getMessage());
          e.printStackTrace();
 
       } catch (InvalidHoursException e) {
-         System.out.println(e.getMessage());
          e.printStackTrace();
 
       }
-      // Display the employee's payroll data.
-      System.out.println("\nEmployee Payroll Data");
-      System.out.println("Name: " + worker.getName());
-      System.out.println("ID Number: " + worker.getIdNumber());
-      System.out.println("Hourly pay rate: " + worker.getPayRate());
-      System.out.println("Hours worked: " + worker.getHoursWorked());
-      System.out.println("Gross pay: $" + worker.getGrossPay());
-
-      
+     
    
    }
 }
